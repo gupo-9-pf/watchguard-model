@@ -6,14 +6,14 @@ from sqlalchemy import Table, Column, Integer, MetaData, String
 metadata = MetaData()
 
 # Define a table
-table = Table('relations', metadata,
-        Column('CODE_CAT', String),
-        Column('CODE_UPZ', String)
+table = Table('modality_severity', metadata,
+        Column('modality', String),
+        Column('severity', String)
     )
 
 # Execute a query
 conn = connection_engine.connect()
-re = 'UPZ22'
-result = conn.execute(f"select * from relations where \"code_upz\"= '{re}'")
+re = 'raponazo'
+result = conn.execute(f"select * from modality_severity where \"modality\"= '{re}'")
 for row in result:
     print(row)
