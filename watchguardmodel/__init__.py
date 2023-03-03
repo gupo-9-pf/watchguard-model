@@ -1,9 +1,7 @@
 # Importing needed packages
 from argparse import ArgumentParser
-from .upz import execute as upz_exec
-from .crime import execute as crime_exec
-from .locality import execute as loc_exec
-from .catastral_parcel import execute as catastral_exec
+from watchguardmodel.upz import execute as upz_exec
+from watchguardmodel.catastralparcel import execute as catastral_exec
 
 # Creating arguments to run the script
 parser = ArgumentParser()
@@ -13,7 +11,7 @@ args = parser.parse_args()
 # Validating command script argument
 try:
     SCRIPT = args.script.lower()
-    if SCRIPT not in ('crime', 'locality', 'upz', 'catastral'):
+    if SCRIPT not in ('upz', 'catastral'):
         raise Exception(
             "Acceptable --script values are: crime, locality, upz, catastral")
 except AttributeError:
@@ -21,11 +19,7 @@ except AttributeError:
         "Script should be executed with '--script=SCRIPT' argument")
 
 # Creating every case for the SCRIPT variable
-if SCRIPT == 'crime':
-    crime_exec()
-elif SCRIPT == 'locality':
-    loc_exec()
-elif SCRIPT == 'upz':
+if SCRIPT == 'upz':
     upz_exec()
 elif SCRIPT == 'catastral':
     catastral_exec()
